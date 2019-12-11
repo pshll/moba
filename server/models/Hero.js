@@ -13,8 +13,8 @@ const schema = new mongoose.Schema({
         push: {type: Number},               //推线
     },
     skills: [{
-        icon: {type: String},
         name: {type: String},
+        icon: {type: String},
         description: {type: String},
         tips: {type: String},
     }],

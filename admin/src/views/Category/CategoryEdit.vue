@@ -11,7 +11,7 @@
 					:value="item._id"></el-option>
 				</el-select>
 			</el-form-item>
-			<el-form-item label="名称" style="margin-top: 30px">
+			<el-form-item label="名称">
 				<el-input v-model="model.name"></el-input>
 			</el-form-item>
 			<el-form-item>
