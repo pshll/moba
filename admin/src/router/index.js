@@ -64,8 +64,41 @@ const routes = [
                 component: () => import("../views/Article/ArticleEdit"),
                 props: true,
             },
+
+            {
+                path: 'ads/list',
+                component: () => import("../views/Ad/AdList"),
+            },
+            {
+                path: 'ads/create',
+                component: () => import("../views/Ad/AdEdit"),
+            },
+            {
+                path: 'ads/edit/:id',
+                component: () => import("../views/Ad/AdEdit"),
+                props: true,
+            },
+
+            {
+                path: 'admin_users/list',
+                component: () => import("../views/AdminUser/AdminUserList"),
+            },
+            {
+                path: 'admin_users/create',
+                component: () => import("../views/AdminUser/AdminUserEdit"),
+            },
+            {
+                path: 'admin_users/edit/:id',
+                component: () => import("../views/AdminUser/AdminUserEdit"),
+                props: true,
+            },
         ]
-    }
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import("../views/Login"),
+    },
 ]
 
 const router = new VueRouter({
