@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
     name: {type: String},
     avatar: {type: String},
+    banner: {type: String},
     nickName: {type: String},
     categories: [{type: mongoose.SchemaTypes.ObjectID, ref: 'Category'}],
     scores: {
@@ -15,6 +16,8 @@ const schema = new mongoose.Schema({
     skills: [{
         name: {type: String},
         icon: {type: String},
+        delay: {type: String},
+        cost: {type: String},
         description: {type: String},
         tips: {type: String},
     }],
@@ -27,4 +30,4 @@ const schema = new mongoose.Schema({
     counters: [{type: mongoose.SchemaTypes.ObjectID, ref: 'Hero'}],
 })
 
-module.exports = mongoose.model('Hero', schema)
+module.exports = mongoose.model('Hero', schema, 'heroes')

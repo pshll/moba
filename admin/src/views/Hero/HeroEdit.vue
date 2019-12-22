@@ -14,10 +14,22 @@
 					<el-form-item label="头像">
 						<el-upload
 						class="avatar-uploader"
-						:action="$http.defaults.baseURL + '/upload'"
+						:action="uploadUrl"
+						:headers="getAuthHeaders()"
 						:show-file-list="false"
-						:on-success="afterUpload">
+						:on-success="res => $set(model, 'avatar',res.url)">
 							<img v-if="model.avatar" :src="model.avatar" class="avatar">
+							<i v-else class="el-icon-plus avatar-uploader-icon"></i>
+						</el-upload>
+					</el-form-item>
+					<el-form-item label="背景图">
+						<el-upload
+						class="avatar-uploader"
+						:action="uploadUrl"
+						:headers="getAuthHeaders()"
+						:show-file-list="false"
+						:on-success="res => $set(model, 'banner',res.url)">
+							<img v-if="model.banner" :src="model.banner" class="avatar">
 							<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 						</el-upload>
 					</el-form-item>
@@ -89,12 +101,19 @@
 							<el-form-item label="图标">
 								<el-upload
 								class="avatar-uploader"
-								:action="$http.defaults.baseURL + '/upload'"
+								:action="uploadUrl"
+								:headers="getAuthHeaders()"
 								:show-file-list="false"
 								:on-success="res => $set(item, 'icon', res.url)">
 									<img v-if="item.icon" :src="item.icon" class="avatar">
 									<i v-else class="el-icon-plus avatar-uploader-icon"></i>
 								</el-upload>
+							</el-form-item>
+							<el-form-item label="冷却">
+								<el-input v-model="item.delay"></el-input>
+							</el-form-item>
+							<el-form-item label="消耗">
+								<el-input v-model="item.cost"></el-input>
 							</el-form-item>
 							<el-form-item label="描述">
 								<el-input type="textarea" v-model="item.description"></el-input>
@@ -217,24 +236,20 @@
                     })
                 })
             },
-            afterUpload(res) {
-                // this.$set(this.model, 'avatar', res.url)
-                this.model.avatar = res.url
-            },
             async save() {
                 if (this.id) {
-                    await this.$http.put(`rest/heros/${this.id}`, this.model)
+                    await this.$http.put(`rest/heroes/${this.id}`, this.model)
                 } else {
-                    await this.$http.post('rest/heros', this.model)
+                    await this.$http.post('rest/heroes', this.model)
                 }
-                this.$router.push('/heros/list')
+                this.$router.push('/heroes/list')
                 this.$message({
                     type: 'success',
                     message: '保存成功'
                 })
             },
             async fetch() {
-                const res = await this.$http.get(`rest/heros/${this.id}`)
+                const res = await this.$http.get(`rest/heroes/${this.id}`)
                 this.model = Object.assign({}, this.model, res.data)
             },
             async fetchCategoryOptions() {
@@ -246,7 +261,7 @@
                 this.equipmentOptions = res.data
             },
             async fetchHeroOptions() {
-                const res = await this.$http.get('rest/heros')
+                const res = await this.$http.get('rest/heroes')
                 this.heroOptions = res.data
             },
         },

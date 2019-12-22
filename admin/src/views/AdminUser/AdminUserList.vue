@@ -39,7 +39,7 @@
                 this.items = res.data
             },
             async remove(row) {
-                this.$confirm(`是否确定要删除 "${row.name}" 继续?`, '提示', {
+                this.$confirm(`是否确定要删除 "${row.username}" 继续?`, '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
                     type: 'warning'

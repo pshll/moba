@@ -38,15 +38,15 @@ const routes = [
             },
 
             {
-                path: 'heros/list',
+                path: 'heroes/list',
                 component: () => import("../views/Hero/HeroList"),
             },
             {
-                path: 'heros/create',
+                path: 'heroes/create',
                 component: () => import("../views/Hero/HeroEdit"),
             },
             {
-                path: 'heros/edit/:id',
+                path: 'heroes/edit/:id',
                 component: () => import("../views/Hero/HeroEdit"),
                 props: true,
             },
@@ -98,11 +98,24 @@ const routes = [
         path: '/login',
         name: 'login',
         component: () => import("../views/Login"),
+        meta: {isPublic: true},
     },
 ]
 
 const router = new VueRouter({
     routes
 })
+
+// 验证
+router.beforeEach(((to, from, next) => {
+    if (!to.meta.isPublic && !localStorage.token) {
+        Vue.prototype.$message({
+            type: 'info',
+            message: '请先登录',
+        })
+        return next('/login')
+    }
+    next()
+}))
 
 export default router
