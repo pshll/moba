@@ -48,7 +48,7 @@
 
 		<list-card icon="card-hero" title="英雄列表" :categories="heroCats">
 			<template #items="{category}">
-				<div class="d-flex flex-warp jc-around" style="margin: 0 -0.5rem">
+				<div class="d-flex flex-warp" style="margin: 0 -0.5rem">
 					<router-link
 					tag="div" :to="`/heroes/${item._id}`"
 					style="width: 20%;box-sizing: border-box;"

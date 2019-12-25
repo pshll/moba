@@ -48,7 +48,7 @@
 						<el-rate
 						style="margin-top: .7rem;"
 						v-model="model.scores.difficult"
-						allow-half>
+						:max="10">
 						</el-rate>
 					</el-form-item>
 					<el-form-item label="技能">

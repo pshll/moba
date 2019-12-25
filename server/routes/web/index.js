@@ -89,7 +89,7 @@ module.exports = app => {
             name: '热门',
             heroList: await Hero.find().where({
                 categories: {$in: subCats}
-            }).limit(10).lean()
+            }).lean()
         })
         res.send(cats)
 
@@ -106,7 +106,10 @@ module.exports = app => {
 
     //英雄详情
     router.get('/heroes/:id', async (req, res) => {
-        const data = await Hero.findById(req.params.id).lean()
+        const data = await Hero
+            .findById(req.params.id)
+            .populate('categories openingEquipments coreEquipments finalEquipments partners counters')
+            .lean()
         res.send(data)
     })
 

@@ -10,7 +10,7 @@
 }
 
 // text overflow
-.text-ellipsis{
+.text-ellipsis {
   display: inline-block;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -99,8 +99,26 @@
 .btn {
   border: none;
   border-radius: 0.1538rem;
-  font-size: map-get($font-sizes, 'sm') * $base-font-size;
+  font-size: map_get($font-sizes, 'sm') * $base-font-size;
   padding: .3rem .6rem;
+
+  &.btn-lg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: map_get($colors, 'light-1');
+    border: 1px solid map_get($colors, 'light');
+    padding: .8rem 1rem;
+    font-size: map_get($font-sizes, 'lg');
+    border-radius: .5rem;
+
+    i {
+      color: map_get($colors, 'info');
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-right: .5rem;
+    }
+  }
 }
 
 // nav
@@ -112,8 +130,8 @@
     padding-bottom: .2rem;
 
     &.active {
-      color: map_get($colors, 'light-1');
-      border-bottom-color: map_get($colors, 'primary');
+      color: map_get($colors, 'light-2');
+      border-bottom-color: map_get($colors, 'light-2');
     }
   }
 
@@ -173,8 +191,8 @@
 }
 
 // borders
-@each $dir in (top,right,bottom,left){
-    .border-#{$dir}{
-      border-#{$dir}: 1px solid $border-color
-    }
+@each $dir in (top, right, bottom, left) {
+  .border-#{$dir} {
+    border-#{$dir}: 1px solid $border-color
+  }
 }
